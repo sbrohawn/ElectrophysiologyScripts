@@ -1,0 +1,61 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf610
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 README\
+#####################################\
+\
+NOTE this script requires installation of the Pyabf library built by Scott W Harden (https://pypi.org/project/pyabf/)\
+\
+NOTE All .abf files MUST be saved as int.\
+This is not the default behavior in Clampfit, so you will almost certainly need to resave .abf files in Clampfit for these scripts to accept them\
+\
+NOTE All scripts assume the script and the input files are in the same folder.\
+#####################################\
+\
+#####################################\
+MeanUnitaryCurrent\
+\
+Calculates the mean current for each event in an events list.\
+\
+INPUT:\
+events list (.txt)\
+.abf file (saved as int)\
+\
+DETAIL\
+This particular script adds the current measurement directly before and after events that are classified as \'931\'94 in the events list (See lines 100 and 126). This was done for analysis of TRAAK currents, where open events classified as \'931\'94 were short and the threshold cutoff used in the events list omitted these values. A set of three scripts are included \'93.._first_open\'94, \'93.._second_open\'94, \'93.._all_open\'94 which pads open events classified as \'931\'94, \'931 and 2\'94, and all nonzero events with adjacent values before and after the time cutoff.\
+\
+OUTPUT:\
+Eventslist_2_Histogram_1adjacent.csv\
+#####################################\
+\
+#####################################\
+Dwell and Mean Current\
+\
+Reads an events list (.txt) and .abf file (saved as int) and outputs a csv with two columns, Mean Dwell time and Mean Current. Each row represents an event that was identified in the recording.\
+\
+INPUT:\
+events list (.txt)\
+.abf file (saved as int)\
+\
+OUTPUT:\
+dwell_and_meanCurrent_1.csv\
+#####################################\
+\
+#####################################\
+2DHistogram\
+\
+This script can be used to build dwell time(x axis) and mean current (y axis) histograms (z-axis) from any number of \'93dwell_and_meanCurrent.csv\'94 files. To analysis multiple files, add \'93_1\'94, \'93_2\'94, etc. to each file and move to same home folder as the script.\
+The script asks for the range of x and y values, as well as the number of bins for each axis. The output file Dwell_and_Meancurrent_rebinned.csv\'94 can be used to make scatterplots or bubble plots.\
+\
+INPUT dwell_and_meanCurrent_1.csv and a range of values and # of bins for x and y.\
+NOTE to analyze negative currents input the lowest value first (i.e -20,0) instead of (0,-20). \
+\
+OUTPUT\
+Dwell_and_MeanCurrent_2DHist.csv\
+#####################################\
+\
+}
